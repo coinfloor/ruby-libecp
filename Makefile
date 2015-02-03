@@ -10,7 +10,9 @@ endif
 ext/libecp/libecp.so ::
 	$(MAKE) -C ext/libecp libecp.so
 
-.PHONY : clean
+.PHONY : install clean
+
+install : lib/libecp.so
+
 clean :
-	rm -f lib/libecp.so
 	$(MAKE) -C ext/libecp clean

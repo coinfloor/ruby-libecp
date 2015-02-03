@@ -1,16 +1,19 @@
 Gem::Specification.new do |s|
   s.name        = "cf-ruby-libecp"
-  s.version     = "0.1.4"
-  s.summary     = "Ruby LibECP wrapper"
-  s.description = "LibECP is a C++ elliptic curve cryptography library for signing, verifying signatures and generating keys."
+  s.version     = "0.2.0"
+  s.summary     = "Ruby LibECP Wrapper"
+  s.description = "Ruby LibECP is a wrapper around LibECP, an elliptic-curve cryptography library for producing and verifying ECDSA signatures."
   s.email       = "development@coinfloor.co.uk"
   s.authors     = ["Coinfloor LTD"]
   s.homepage    = "https://github.com/coinfloor/ruby-libecp"
   s.license     = "Apache License Version 2.0"
 
-  s.add_dependency "ffi", "~> 1.9", ">= 1.9.3"
-  s.required_ruby_version = ">= 1.9.3"
+  s.require_paths = %w(lib)
+  s.files         = `git ls-files`.split("\n") +
+                    `git submodule --quiet update --init ; cd ext/libecp ; git ls-files`.split("\n").map { |f| "ext/libecp/" + f }
+  s.extensions   << "configure"
 
-  s.files         = ["lib/libecp.rb"]
-  s.require_paths = ["lib"]
+  s.add_dependency "ffi",  "~> 1.9", ">= 1.9.3"
+
+  s.required_ruby_version = ">= 1.9.3"
 end
