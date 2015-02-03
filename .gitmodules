@@ -1,0 +1,3 @@
+[submodule "ext/libecp"]
+	path = ext/libecp
+	url = https://github.com/coinfloor/libecp.git
