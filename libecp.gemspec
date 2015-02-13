@@ -1,6 +1,6 @@
 Gem::Specification.new do |s|
   s.name        = "cf-ruby-libecp"
-  s.version     = "0.2.0"
+  s.version     = "0.2.1"
   s.summary     = "Ruby LibECP Wrapper"
   s.description = "Ruby LibECP is a wrapper around LibECP, an elliptic-curve cryptography library for producing and verifying ECDSA signatures."
   s.email       = "development@coinfloor.co.uk"
