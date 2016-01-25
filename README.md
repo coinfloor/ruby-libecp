@@ -27,7 +27,9 @@ used in Unix.
 
 #### OS X with Homebrew
 
-    $ brew install gmp
+    $ brew tap homebrew/versions
+    $ brew install gmp4
+    $ CPPFLAGS=-I/usr/local/opt/gmp4/include LDFLAGS=-L/usr/local/opt/gmp4/lib gem install cf-ruby-libecp
 
 #### OS X with MacPorts
 
