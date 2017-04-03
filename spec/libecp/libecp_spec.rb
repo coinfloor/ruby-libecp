@@ -18,22 +18,21 @@ describe LibEcp do
   describe '.private_key' do
     let(:user_id) { 1 }
     let(:password) { 'password' }
-
-    let(:data) { libecp.gen_uid(user_id) + password.force_encoding('ASCII-8BIT') }
-    let(:hash) { OpenSSL::Digest.digest('SHA224', data) }
+    let(:sha224_hash) { "\xD6i\xB5\"\xC6ea\n\xB6\x99\xA1h\x97V\xA87R\"\xC4\x88/\x15\x86\xD1\x86\xB0\x83\xB0".force_encoding('ASCII-8BIT') }
 
     subject { libecp.private_key(libecp.gen_uid(user_id), password) }
 
     it 'generates private key using SHA224' do
-      expect(subject).to eq(hash)
+      expect(subject).to eq(sha224_hash)
     end
 
     context 'when providing special characters' do
       let(:user_id) { 128 }  # user_id = 128
       let(:password) { "COPAú€rowentaú€#£ęćżźłów~!@#$%^&*()_+`-=[]{}:\";'<>?,./!\"£eqQWRTYEYUIOPLKJHGFDSAZXCVBNM#£ęćżźłów" }
+      let(:sha224_hash) { "\x9C\xC7\xB56D5|\x14\f\x80;\x9AI}2>') \x10\x1C\xC3\\1\xF7\x84\xDE\x01".force_encoding('ASCII-8BIT') }
 
       it 'ensures proper processing' do
-        expect(subject).to eq(hash)
+        expect(subject).to eq(sha224_hash)
         expect(subject.encoding).to be Encoding::ASCII_8BIT
       end
     end
