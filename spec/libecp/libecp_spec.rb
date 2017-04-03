@@ -27,7 +27,7 @@ describe LibEcp do
     end
 
     context 'when providing special characters' do
-      let(:user_id) { 128 }  # user_id = 128
+      let(:user_id) { 128 }
       let(:password) { "COPAú€rowentaú€#£ęćżźłów~!@#$%^&*()_+`-=[]{}:\";'<>?,./!\"£eqQWRTYEYUIOPLKJHGFDSAZXCVBNM#£ęćżźłów" }
       let(:sha224_hash) { "\x9C\xC7\xB56D5|\x14\f\x80;\x9AI}2>') \x10\x1C\xC3\\1\xF7\x84\xDE\x01".force_encoding('ASCII-8BIT') }
 
