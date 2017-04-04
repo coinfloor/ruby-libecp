@@ -37,12 +37,21 @@ module LibEcp
 
   # Generates user id as a bytestring
   def self.gen_uid(user_id)
-    (user_id >> 56 & 0xFF).chr + (user_id >> 48 & 0xFF).chr + (user_id >> 40 & 0xFF).chr + (user_id >> 32 & 0xFF).chr + (user_id >> 24 & 0xFF).chr + (user_id >> 16 & 0xFF).chr + (user_id >> 8 & 0xFF).chr + (user_id & 0xFF).chr
+    (
+      (user_id >> 56 & 0xFF).chr +
+        (user_id >> 48 & 0xFF).chr +
+        (user_id >> 40 & 0xFF).chr +
+        (user_id >> 32 & 0xFF).chr +
+        (user_id >> 24 & 0xFF).chr +
+        (user_id >> 16 & 0xFF).chr +
+        (user_id >> 8 & 0xFF).chr +
+        (user_id & 0xFF).chr
+    ).encode("ASCII-8BIT")
   end
 
   # Generates users private key, Arguments: user id bytestring (from gen_uid), password String
   def self.private_key(uid, pass)
-    OpenSSL::Digest.digest("SHA224", uid + pass)
+    OpenSSL::Digest.digest("SHA224", uid + pass.encode("UTF-8").force_encoding("ASCII-8BIT"))
   end
 
   # Generates public key from private key
